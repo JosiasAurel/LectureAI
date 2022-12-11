@@ -16,8 +16,8 @@ filename = "tailor.mp3"
 
 
 def post1(name):
-    def read_file(name, chunk_size=5242880):
-        with open(filename, 'rb') as _file:
+    def read_file(nam, chunk_size=5242880):
+        with open(nam, 'rb') as _file:
             while True:
                 data = _file.read(chunk_size)
                 if not data:
@@ -28,7 +28,7 @@ def post1(name):
     headers = {'authorization': "8ac213c99e23428e84bf7b0801f4dc6a"}
     response = requests.post('https://api.assemblyai.com/v2/upload',
                              headers=headers,
-                             data=read_file(filename))
+                             data=read_file(name))
     # upload url
     url2 = response.json()['upload_url']
     return url2
@@ -44,8 +44,7 @@ def post2(url, num):
         "content-type": "application/json"
     }
     response1 = requests.post(endpoint, json=json, headers=headers)
-    print(response1.json())
     id_ = response1.json()["id"]
-    return id_
 
+    return id_
     # a certain token is stored in something (very useful)
