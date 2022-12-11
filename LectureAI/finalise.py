@@ -22,16 +22,13 @@ from time import sleep
 # "gist": "How to Make a T-Shirt With a Knot", "headline": "Step one: Cut your thread so it's more than twice the length needed", "start": 107444, "end": 211258}, {"summary": "Measure and Pin just like when slimming your trousers. If you have the perfect fitting pair of pants, you can use them to get the right measurements. Now let's talk about how to hem those trousers that are too long.", "gist": "How to hem Your Trousers That Are Too Long", "headline": "How to hem those trousers that are too long", "start": 211354, "end": 319938}, {"summary": "This technique also works on any kind of trousers, including jeans and chinos. What piece of clothing do you want to learn to tailor next? Let me know down in the comments.", "gist": "How To Tuck Your T-Shirt Fit!", "headline": "This technique also works on any kind of trousers, including jeans and chinos", "start": 320104, "end": 339570}]
 
 print('hey')
-url = post.post1('tailor.mp3')
+url = post.upload_audio('tailor.mp3')
 print('hey')
-id_ = post.post2(url)
+id_ = post.get_entity_id(url)
 print('hey')
 
 while request.request(id_)["status"] != "completed":
-    print('sleep 10')
-    sleep(10)
-    print("sleep 10")
-    sleep(10)
+    print("Processing...")
 chapters = request.request(id_)["chapters"]
 print(chapters)
 
@@ -68,8 +65,8 @@ with open('something.csv', 'w', newline='') as file:
         first_10_secs = song[start:stop]
         first_10_secs.export(name, format="mp3")
 
-        url = post.post1(name)
-        id_ = post.post2(url)  # remove unused str(chapters.index(i))
+        url = post.upload_audio(name)
+        id_ = post.get_entity_id(url)  # remove unused str(chapters.index(i))
         num = str(chapters.index(i))
 
         writer.writerow({'props': num, 'val': id_})

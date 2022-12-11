@@ -14,8 +14,10 @@ import csv
 # # endpoint = "https://api.assemblyai.com/v2/transcript"
 filename = "tailor.mp3"
 
+# upload audio file like a stream
 
-def post1(name):
+
+def upload_audio(name):
     def read_file(name, chunk_size=5242880):
         with open(name, 'rb') as _file:
             while True:
@@ -30,13 +32,13 @@ def post1(name):
                              headers=headers,
                              data=read_file(name))
     # upload url
-    url2 = response.json()['upload_url']
-    return url2
+    file_uri = response.json()['upload_url']
+    return file_uri
 
 # I get that url and then send the actual post request to the api
 
 
-def post2(url):
+def get_entity_id(url):
     endpoint = "https://api.assemblyai.com/v2/transcript"
     json = {"audio_url": url, "auto_chapters": True}
     headers = {
