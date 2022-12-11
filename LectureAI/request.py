@@ -1,11 +1,11 @@
 import requests
-import csv
-import json as jsons
+# import csv
+# import json as jsons
 
 
 def request(id_):
     # Then you come here this is where the text will be collected toghether with the chapters
-    arr = []
+    # arr = []
     # reading the token......
 
     endpoint = "https://api.assemblyai.com/v2/transcript"

@@ -1,6 +1,6 @@
 # from docx import Document
 # from docx.shared import Inches
-import os
+# import os
 from pydub import AudioSegment
 import post
 import csv
@@ -24,7 +24,7 @@ from time import sleep
 print('hey')
 url = post.post1('tailor.mp3')
 print('hey')
-id_ = post.post2(url, 0)
+id_ = post.post2(url)
 print('hey')
 
 while request.request(id_)["status"] != "completed":
@@ -69,7 +69,7 @@ with open('something.csv', 'w', newline='') as file:
         first_10_secs.export(name, format="mp3")
 
         url = post.post1(name)
-        id_ = post.post2(url, str(chapters.index(i)))
+        id_ = post.post2(url)  # remove unused str(chapters.index(i))
         num = str(chapters.index(i))
 
         writer.writerow({'props': num, 'val': id_})

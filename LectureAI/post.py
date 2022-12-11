@@ -16,8 +16,8 @@ filename = "tailor.mp3"
 
 
 def post1(name):
-    def read_file(nam, chunk_size=5242880):
-        with open(nam, 'rb') as _file:
+    def read_file(name, chunk_size=5242880):
+        with open(name, 'rb') as _file:
             while True:
                 data = _file.read(chunk_size)
                 if not data:
@@ -36,7 +36,7 @@ def post1(name):
 # I get that url and then send the actual post request to the api
 
 
-def post2(url, num):
+def post2(url):
     endpoint = "https://api.assemblyai.com/v2/transcript"
     json = {"audio_url": url, "auto_chapters": True}
     headers = {
